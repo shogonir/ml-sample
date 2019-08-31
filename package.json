@@ -1,0 +1,21 @@
+{
+  "name": "ml-sample",
+  "version": "1.0.0",
+  "description": "machine learning sample repository",
+  "main": "index.js",
+  "repository": "https://github.com/shogonir/ml-sample",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack -w",
+    "exec": "node dist/bundle.js"
+  },
+  "author": "shogonir",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
