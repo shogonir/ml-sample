@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack -w",
-    "exec": "node dist/bundle.js"
+    "exec": "node dist/bundle.js",
+    "run": "npm run build && npm run exec"
   },
   "author": "shogonir",
   "license": "MIT",
