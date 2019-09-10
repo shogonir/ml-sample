@@ -1,20 +1,26 @@
 import Numbers from "../utils/Numbers";
 import MathUtil from "../utils/MathUtil";
 
+import ActivationFunction from './activationFunction/ActivationFunction'
+import StandardSigmoidFunction from './activationFunction/StandardSigmoidFunction'
+
 export default class Neuron {
 
   numberOfInputs: number
 
   weightList: number[]
 
-  constructor(numberOfInputs: number) {
+  activationFunction: ActivationFunction
+
+  constructor(numberOfInputs: number, activationFunction: ActivationFunction = new StandardSigmoidFunction()) {
     this.numberOfInputs = numberOfInputs
     this.weightList = Numbers.all(0, numberOfInputs)
+    this.activationFunction = activationFunction
   }
 
   calculate(input: number[]): number {
     const sum = this.sumProducts(input)
-    return MathUtil.normalSigmoid(sum)
+    return this.activationFunction.func(sum)
   }
 
   private sumProducts(input: number[]): number {
@@ -35,7 +41,7 @@ export default class Neuron {
       const calculatedOutput = this.calculate(input)
       const correctOutput = outputList[index]
       const sumProducts = this.sumProducts(input)
-      const differentiatedOutput = MathUtil.differentiatedNormalSigmoid(sumProducts)
+      const differentiatedOutput = this.activationFunction.diff(sumProducts)
       deltaBaseList.push((calculatedOutput - correctOutput) * differentiatedOutput)
     })
 
